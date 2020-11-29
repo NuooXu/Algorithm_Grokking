@@ -35,9 +35,6 @@ public class LongestSubstringwithKDistinctChars {
       map.put(chars[end],map.getOrDefault(chars[end], 0) + 1);
 
       while(map.size() > K){
-        int len = end - start; //length should [start, end)
-        max = Math.max(max, len);
-
         //remove the start character
         int value = map.get(chars[start]);
         if(value == 1){
@@ -47,6 +44,10 @@ public class LongestSubstringwithKDistinctChars {
         }
         start++;
       }
+
+      //len的计算不能放在while里面，否则有些情况不会进入while循环则无法更新最大值
+      int len = end - start + 1;
+      max = Math.max(max, len);
     }
 
     return max;
