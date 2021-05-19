@@ -1,4 +1,4 @@
-package slidingwindow;
+package slidingwindow.Introduction;
 
 import java.util.Arrays;
 
@@ -23,3 +23,4 @@ class Introduction {
     System.out.println("average subarray of size k is:" + Arrays.toString(result));
   }
 }
+

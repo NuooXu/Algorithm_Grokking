@@ -1,4 +1,4 @@
-package slidingwindow;
+package slidingwindow.SmallestSubarrayWithaGivenSum_E;
 
 // Problem Statement #
 // Given an array of positive numbers and a positive number ‘S’, find the length of the smallest contiguous subarray whose sum is greater than or equal to ‘S’. Return 0, if no such subarray exists.
@@ -22,24 +22,18 @@ package slidingwindow;
 public class SmallestSubarrayWithaGivenSum_E {
 
   public static int findSmallestSubarray(int S, int[] arr){
-
-    int sum = 0;
-    int min = Integer.MAX_VALUE;
-    int start = 0;
-
+    int start = 0, min = Integer.MAX_VALUE, sum = 0;
     for(int end = 0; end < arr.length; end++){
       sum += arr[end];
-
       while(sum >= S){
         int len = end - start + 1;
         min = Math.min(min, len);
-        
         sum -= arr[start];
         start++;
       }
     }
-
-    return min;
+    return min == Integer.MAX_VALUE ? 0 : min;
+    
   }
   //Time: O(n), Space: O(1)
 

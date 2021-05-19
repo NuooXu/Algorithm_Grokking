@@ -1,4 +1,4 @@
-package slidingwindow;
+package slidingwindow.MaxSumSubarraySizeK_E;
 // Problem Statement 
 // Given an array of positive numbers and a positive number ‘k’, find the maximum sum of any contiguous subarray of size ‘k’.
 
@@ -16,20 +16,15 @@ package slidingwindow;
 public class MaxSumSubarraySizeK_E {
 
   public static int findMaxSumSubarray(int k, int[] arr){
-    int start = 0;
-    int sum = 0;
-    int max = 0;
-
-    for(int end = 0; end < arr.length; end++){
+    int max = 0, sum = 0, start = 0;
+    for(int end = 0; end < arr.length; end ++){
       sum += arr[end];
-
       if(end >= k - 1){
         max = Math.max(max, sum);
         sum -= arr[start];
         start++;
       }
     }
-
     return max;
   }
 
@@ -37,3 +32,4 @@ public class MaxSumSubarraySizeK_E {
     System.out.println("Max sum of subarray of size K :" + findMaxSumSubarray(3, new int[] {2,1,5,1,3,2}));
   }
 }
+//Time: O(N) Space: O(1)
