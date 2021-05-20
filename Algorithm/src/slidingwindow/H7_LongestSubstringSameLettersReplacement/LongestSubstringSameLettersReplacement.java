@@ -1,4 +1,4 @@
-package slidingwindow;
+package slidingwindow.H7_LongestSubstringSameLettersReplacement;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,31 +18,35 @@ import java.util.Map;
 // Explanation: Replace the 'c' with 'b' to have a longest repeating substring "bbbb".
 // Example 3:
 
-// Input: String="abccde", k=1
+// Input: String="abccdeee", k=1
 // Output: 3
 // Explanation: Replace the 'b' or 'd' with 'c' to have the longest repeating substring "ccc".
 
 public class LongestSubstringSameLettersReplacement {
   public static int findLongestSubstring(String s, int k){
-    //通过不断记录当前出现的字符的最高频次,while中用window的长度-最高频次，若<=k则继续添加
-    //若>k，则要把start向前移一位，并在map中相应的-1
-    int max = 0;
-    int start = 0;
-    Map<Character, Integer> map = new HashMap<>();
-    int curMaxFre = 0;
+   int start = 0, max = 0, repeat = 0;
+   Map<Character, Integer> map = new HashMap<>();
 
-    for(int end = 0; end < s.length(); end++){
-      map.put(s.charAt(end), map.getOrDefault(s.charAt(end), 0) + 1);
-      curMaxFre = Math.max(curMaxFre, map.get(s.charAt(end)));
+   for(int end = 0; end < s.length(); end++){
+     char rc = s.charAt(end);
+     map.put(rc, map.getOrDefault(rc, 0) + 1);
+     repeat = Math.max(repeat, map.get(rc));
 
-      while((end - start + 1) - curMaxFre > k){
-        map.put(s.charAt(start), map.get(s.charAt(start)) - 1);
-        start++;
-      }
-      max = Math.max(max, end - start + 1);
-    }
-    return max;
+     if(end - start + 1 - repeat > k){
+       char lc = s.charAt(start);
+       map.put(lc, map.get(lc) - 1);
+       start++;
+     }
+     max = Math.max(max, end - start + 1);
+   }
+   return max;
   }
+
+  //通过不断记录出现的字符的最高频次,while中用window的长度-最高频次，若<=k则继续添加
+  //若>k，则要把start向前移一位，并在map中相应的-1
+  //可以不缩小字符最高频次是因为，So at any time, 
+  //we know that we can have a window which has one letter repeating maxRepeatLetterCount times, 
+  //this means we should try to replace the remaining letters.
   public static void main(String[] args){
     System.out.println(findLongestSubstring("abccde", 1));
     System.out.println(findLongestSubstring("abbcb", 1));

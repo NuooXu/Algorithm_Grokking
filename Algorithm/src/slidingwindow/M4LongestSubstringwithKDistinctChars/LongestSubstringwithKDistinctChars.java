@@ -1,4 +1,4 @@
-package slidingwindow;
+package slidingwindow.M4LongestSubstringwithKDistinctChars;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,31 +25,22 @@ import java.util.Map;
 public class LongestSubstringwithKDistinctChars {
 
   public static int findLongestSubstring(int K, String s){
-
-    int max = 0;
-    int start = 0;
+    int start = 0, max = 0;
     Map<Character, Integer> map = new HashMap<>();
-    char[] chars = s.toCharArray();
 
-    for(int end = 0; end < chars.length; end++){
-      map.put(chars[end],map.getOrDefault(chars[end], 0) + 1);
-
+    for(int end = 0; end < s.length(); end++){
+      char rc = s.charAt(end);
+      map.put(rc, map.getOrDefault(rc, 0) + 1);
       while(map.size() > K){
-        //remove the start character
-        int value = map.get(chars[start]);
-        if(value == 1){
-          map.remove(chars[start]);
-        }else if(value > 1){
-          map.put(chars[start], value - 1);
+        char lc = s.charAt(start);
+        map.put(lc, map.get(lc) - 1);
+        if(map.get(lc) == 0){
+          map.remove(lc);
         }
         start++;
       }
-
-      //len的计算不能放在while里面，否则有些情况不会进入while循环则无法更新最大值
-      int len = end - start + 1;
-      max = Math.max(max, len);
+      max = Math.max(max, end - start + 1);
     }
-
     return max;
   }
   //Time: O(n) space:O(k)

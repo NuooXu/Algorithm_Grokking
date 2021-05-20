@@ -1,4 +1,4 @@
-package slidingwindow;
+package slidingwindow.H6_NoRepeatSubstring;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,26 +25,23 @@ import java.util.Map;
 public class NoRepeatSubstring_H {
 
   public static int findSbustring(String s){
-    int max = 0;
-    int start = 0;
-    char[] ch = s.toCharArray();
+    int start = 0, max = 0;
     Map<Character, Integer> map = new HashMap<>();
-    
-    for(int end = 0; end < ch.length; end++){
-      
-      if(map.containsKey(ch[end])){
-        //* here need to compare with start, if not, abccdea, this situation will be wrong.
-        //because a still in the map, it not be removed before
-        start = Math.max(start, map.get(ch[end]) + 1);
+
+    for(int end = 0; end < s.length(); end++){
+      char rc = s.charAt(end);
+      if(map.containsKey(rc)){
+        start = Math.max(start, map.get(rc) + 1);
       }
-      //put new character and its index
-      map.put(ch[end], end);
-      //updata the max length
+      map.put(rc, end);
       max = Math.max(max, end - start + 1);
     }
-
     return max;
   }
+  //33-35 tricky part: it not delete all the characters in map before the repeat one
+  //it changed the index instead, also need to pay attention the start position
+  //TIME: O(N) SPACE: O(1)
+
   public static void main(String[] args){
     int res1 = findSbustring("abccde");
     System.out.println(res1);

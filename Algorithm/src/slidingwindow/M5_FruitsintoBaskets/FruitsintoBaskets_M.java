@@ -1,4 +1,4 @@
-package slidingwindow;
+package slidingwindow.M5_FruitsintoBaskets;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,27 +25,22 @@ import java.util.Map;
 public class FruitsintoBaskets_M {
 
   public static int putFruits(char[] arr){
-    int max = 0;
-    int start = 0;
+    int start = 0, max = 0;
     Map<Character, Integer> map = new HashMap<>();
 
     for(int end = 0; end < arr.length; end++){
-      map.put(arr[end], map.getOrDefault(arr[end], 0) + 1);
-
+      char rc = arr[end];
+      map.put(rc, map.getOrDefault(rc, 0) + 1);
       while(map.size() > 2){
-        int value = map.get(arr[start]);
-        if(value == 1){
-          map.remove(arr[start]);
-        }else if(value > 1){
-          map.put(arr[start], value - 1);
+        char lc = arr[start];
+        map.put(lc, map.get(lc) - 1);
+        if(map.get(lc) == 0){
+          map.remove(lc);
         }
         start++;
       }
-
-      int len = end - start + 1;
-      max = Math.max(max, len);      
+      max = Math.max(max, end - start + 1);
     }
-
     return max;
   }
 
