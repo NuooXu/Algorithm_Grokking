@@ -1,4 +1,4 @@
-package twopointers;
+package twopointers.E2_PairwithTargetSum;
 
 // Given an array of sorted numbers and a target sum, find a pair in the array whose sum is equal to the given target.
 
@@ -18,27 +18,24 @@ package twopointers;
 public class PairwithTargetSum_E {
 
   public static int[] search(int[] arr, int target){
-    int start = 0;
-    int end = arr.length -1;
+    int start = 0, end = arr.length - 1;
     int[] res = new int[]{-1, -1};
-
     while(start < end){
       int sum = arr[start] + arr[end];
       if(sum == target){
         res[0] = start;
         res[1] = end;
-        break;
+        return res;
       }else if(sum > target){
         end--;
       }else if(sum < target){
         start++;
       }
     }
-
     return res;
   }
   public static void main(String[] args) {
-    int[] res1 = search(new int[]{1, 2, 3, 4, 6}, 6);
+    int[] res1 = search(new int[]{1, 2, 3, 4, 5}, 6);
     System.out.println("[" + res1[0] + "," + res1[1] + "]");
   }
 }

@@ -1,4 +1,4 @@
-package twopointers;
+package twopointers.E3_RemoveDuplicates;
 
 // Problem Statement #
 // Given an array of sorted numbers, remove all duplicates from it. You should not use any extra space; after removing the duplicates in-place return the new length of the array.
@@ -32,26 +32,28 @@ package twopointers;
 public class RemoveDuplicates {
 
   public static int remove(int[] arr){
-    int nextNonDup = 1;
-    for(int i = 1; i < arr.length; i++){
-      if(arr[nextNonDup - 1] != arr[i]){
-        arr[nextNonDup] = arr[i];
-        nextNonDup++;
+    int next = 1;
+    for(int cur = 1; cur < arr.length; cur++){
+      if(arr[next - 1] != arr[cur]){
+        arr[next] = arr[cur];
+        next++;
       }
     }
-    return nextNonDup;//len from [0, nextNonDup) = nextNonDup
+    return next;
   }
 
   public static int followUp(int[] arr, int key){
-    int nextElement = 0;
-    for(int i = 0; i < arr.length; i++){
-      if(arr[i] != key){
-        arr[nextElement] = arr[i];
-        nextElement++;
+    int next = 0;
+    for(int cur = 0; cur < arr.length; cur++){
+      if(arr[cur] != key){
+        arr[next] = arr[cur];
+        next++;
       }
     }
-    return nextElement;
+    return next;
   }
+    
+
   public static void main(String[] args){
     System.out.println(remove(new int[]{2, 3, 3, 3, 6, 9, 9}));
     System.out.println(remove(new int[]{2, 2, 2, 11}));

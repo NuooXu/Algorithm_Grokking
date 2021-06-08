@@ -1,4 +1,4 @@
-package twopointers;
+package twopointers.M5_TripletSumtoZero;
 
 import java.util.ArrayList;
 import java.util.Arrays;
