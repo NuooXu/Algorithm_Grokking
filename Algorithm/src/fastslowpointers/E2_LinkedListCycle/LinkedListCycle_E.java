@@ -1,4 +1,4 @@
-package fastslowpointers;
+package fastslowpointers.E2_LinkedListCycle;
 
 class ListNode{
   int value = 0;
@@ -8,25 +8,31 @@ class ListNode{
     this.value = value;
   }
 }
+
 public class LinkedListCycle_E {
   public static boolean hasCycle(ListNode head){
-    ListNode slow = head;
     ListNode fast = head;
-
-    while(fast != null && fast.next != null){ //注意循环的条件，没写对
-      slow = slow.next;
+    ListNode slow = head;
+    while(fast != null && fast.next != null){
       fast = fast.next.next;
-      if(slow == fast) return true; 
+      slow = slow.next;
+      if(fast == slow){
+        return true;
+      }
     }
     return false;
   }
+//TIME: O(N) SPACE: O(1)
+
   public static void main(String[] args) {
     ListNode head = new ListNode(1);
     head.next = new ListNode(2);
     head.next.next = new ListNode(3);
     head.next.next.next = new ListNode(4);
     head.next.next.next.next = new ListNode(5);
+    head.next.next.next.next.next = head.next.next;
 
     System.out.println(hasCycle(head));
   }
 }
+
