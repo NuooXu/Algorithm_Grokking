@@ -9,4 +9,7 @@ Slow Fast Pointers:
   Challenge3 没做
 Merge Intervals:
   Challenge3 没做
+In-place Reverse LinkedList:
+  3.Reverse a Sub-LinkedList
+  
 
