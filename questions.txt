@@ -15,6 +15,10 @@ In-place Reverse LinkedList:
 DFS:
   6.Count Path for a Sum 没做
   Challenge1
+Min and Max Heap:
+  2. Find the Median of a Number Stream
+  Challenge1 没写
+  
 
   
 
