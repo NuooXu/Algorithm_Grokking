@@ -18,7 +18,20 @@ DFS:
 Min and Max Heap:
   2. Find the Median of a Number Stream
   Challenge1 没写
+Set:
+  7.Unique Generalized Abbreviatioins 没做
+  系列：-Balanced Parentheses (hard)
+      - Challenge1 
+      - Challenge2
+      - Challenge3
+Binary Search:
+  Challenge2
+  Challenge3 没做
+Bit:
+  3.Two Single Number 没做
+Top Key Elements:
   
+
 
   
 
